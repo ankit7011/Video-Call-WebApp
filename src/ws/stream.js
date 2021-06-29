@@ -1,0 +1,36 @@
+const stream = ( socket ) =>{
+    //subscribe means join......
+    socket.on('subscribe',(data)=>{
+        socket.join(data.room);
+        socket.join(data.socketId);
+        //informing everyones that we have new user
+       // if(socket.adapter.rooms[data.room].length>1)
+        {
+            //trigger only if room contain atleast 2 user
+            socket.to(data.room).emit('new user',{socketId : data.socketId});
+        }  
+    })
+
+    socket.on('newUserStart',(data)=>{
+        socket.to(data.to).emit('newUserStart',{sender : data.sender})
+    })
+
+    socket.on('sdp',(data)=>{
+        console.log("in")
+        socket.to(data.to).emit('sdp',{description : data.description, sender : data.sender});
+
+    })
+
+    socket.on('ice candidates',(data)=>{
+        console.log("in ICE")
+        socket.to(data.to).emit('ice candidates',{candidate : data.candidate, sender : data.sender});
+    })
+
+    socket.on('chat',(data)=>{
+        console.log("in")
+        socket.to(data.room).emit('chat',{sender : data.sender , msg : data.msg})
+    })
+
+}
+
+module.exports = stream;

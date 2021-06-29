@@ -1,0 +1,17 @@
+{
+  "name": "video_call_webapp_2",
+  "version": "1.0.0",
+  "description": "Multi User Video Call App",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ankit Yadav",
+  "license": "ISC",
+  "dependencies": {
+    "autolink.js": "^0.1.1",
+    "express": "^4.17.1",
+    "serve-favicon": "^2.5.0",
+    "socket.io": "^4.1.2"
+  }
+}
